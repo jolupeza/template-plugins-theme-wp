@@ -1,0 +1,19 @@
+{
+    "name": "watson/autoclass-manager",
+    "description": "Plugins Wp para administrar el contenido de la web de Autoclass",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Perez",
+            "email": "joseluis@watson.pe"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Altimea_Custom_Messages\\": "src/"
+        }
+    },
+    "require": {
+        "endroid/simple-excel": "^2.1"
+    }
+}
