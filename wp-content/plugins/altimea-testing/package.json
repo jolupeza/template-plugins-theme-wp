@@ -2,11 +2,22 @@
   "name": "altimea-testing",
   "main": "gulpfile.js",
   "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "autoprefixer": "^9.4.5",
+    "axios": "^0.18.0",
     "browser-sync": "^2.18.12",
+    "cross-env": "^5.2.0",
     "cssnano": "^4.1.8",
     "del": "^3.0.0",
     "eslint": "^5.12.0",
@@ -29,10 +40,17 @@
     "gulp-util": "^3.0.8",
     "gulp-wp-pot": "^2.0.4",
     "jshint": "^2.9.4",
+    "laravel-mix": "^4.0.14",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "postcss-purifycss": "^1.1.0",
+    "qs": "^6.6.0",
     "rimraf": "^2.6.2",
     "stylelint": "^9.10.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "vue": "^2.5.22",
+    "vue-template-compiler": "^2.5.22",
+    "vuex": "^3.1.0"
   },
   "dependencies": {
     "bootstrap": "^4.2.1",

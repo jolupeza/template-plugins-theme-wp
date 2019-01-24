@@ -84,13 +84,15 @@ class ScriptLoader implements AssetsInterface
          * class.
          */
 
+        wp_enqueue_script('altimea-testing-vue', plugin_dir_url(ALTIMEA_TESTING_FILE) . 'public/assets/js/app.js', array(), $this->version, true);
+
         $fileName = 'altimea-testing-main.js';
         $newFileName = AltimeaTestingGulpfile::getFileNameMD5( $fileName );
 
         if (file_exists(plugin_dir_path( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $newFileName)) {
-            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $newFileName, array( 'jquery' ), $this->version, false);
+            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $newFileName, array( 'jquery' ), $this->version, true);
         } else {
-            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $fileName, array( 'jquery' ), $this->version, false);
+            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $fileName, array( 'jquery' ), $this->version, true);
         }
     }
 
