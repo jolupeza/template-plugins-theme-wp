@@ -27,7 +27,7 @@ use AltimeaTesting\Includes\Libraries\AltimeaTestingGulpfile;
  * @package    AltimeaTesting
  * @subpackage AltimeaTesting/public
  */
-class CssLoader implements AssetsInterface
+class ScriptLoader implements AssetsInterface
 {
     /**
      *
@@ -66,7 +66,7 @@ class CssLoader implements AssetsInterface
     }
 
     /**
-     * Register the stylesheets for the public-facing side of the site.
+     * Register the JavaScript for the public-facing side of the site.
      *
      * @since    1.0.0
      */
@@ -84,25 +84,13 @@ class CssLoader implements AssetsInterface
          * class.
          */
 
-        $fileName = 'altimea-testing-main.css';
+        $fileName = 'altimea-testing-main.js';
         $newFileName = AltimeaTestingGulpfile::getFileNameMD5( $fileName );
 
-        if (file_exists(plugin_dir_path( ALTIMEA_TESTING_FILE ) . 'public/assets/css/' . $newFileName)) {
-            wp_enqueue_style(
-                $this->altimeaTesting,
-                plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/css/' . $newFileName,
-                array(),
-                $this->version,
-                'all'
-            );
+        if (file_exists(plugin_dir_path( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $newFileName)) {
+            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $newFileName, array( 'jquery' ), $this->version, false);
         } else {
-            wp_enqueue_style(
-                $this->altimeaTesting,
-                plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/css/' . $fileName,
-                array(),
-                $this->version,
-                'all'
-            );
+            wp_enqueue_script($this->altimeaTesting, plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'public/assets/js/' . $fileName, array( 'jquery' ), $this->version, false);
         }
     }
 

@@ -7,7 +7,8 @@ use AltimeaTesting\Includes\AltimeaTestingI18n;
 use AltimeaTesting\Admin\AltimeaTestingAdmin;
 use AltimeaTesting\Front\AltimeaTestingPublic;
 use AltimeaTesting\Shared\AltimeaTestingDeserializer as Deserializer;
-use AltimeaTesting\Front\CssLoader;
+use AltimeaTesting\Front\CssLoader as PublicCssLoader;
+use AltimeaTesting\Front\ScriptLoader as PublicScriptLoader;
 
 /**
  * The file that defines the core plugin class
@@ -158,12 +159,15 @@ class AltimeaTesting
     private function define_public_hooks()
     {
         $plugin_public = new AltimeaTestingPublic( $this->get_altimea_testing(), $this->get_version() );
-        $cssLoader = new CssLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
 
+        $cssLoader = new PublicCssLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
         $this->loader->add_action('wp_enqueue_scripts', $cssLoader, 'enqueue');
 
+        $jsLoader = new PublicScriptLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
+        $this->loader->add_action('wp_enqueue_scripts', $jsLoader, 'enqueue');
+
         //$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        //$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         
         $this->loader->add_filter('the_content', $plugin_public, 'filterContent');
     }
