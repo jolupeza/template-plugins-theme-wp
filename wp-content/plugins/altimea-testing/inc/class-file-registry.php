@@ -44,7 +44,6 @@ class FileRegistry
         if (file_exists($filePath)) {
             include_once $filePath;
         } else {
-            var_dump($filePath); exit();
             wp_die(
                 esc_html('The specified file does not exist.')
             );

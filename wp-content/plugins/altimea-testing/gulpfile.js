@@ -1,5 +1,5 @@
 // config globals
-var src = './src/',
+const src = './src/',
     dist = './public/assets/',
     srcPug = './src/pug/**/*.pug',
     distPartials = './public/partials/',
@@ -8,21 +8,21 @@ var src = './src/',
     destJSFile = 'altimea-testing-main.js';
 
 // my scripts: default load all script of folder js/*
-var scripts = [
+const scripts = [
     src + 'js/functions.js',
     src + 'js/main.js'
 ];
 
 // node modules folder
-var modules = './node_modules/';
+const modules = './node_modules/';
 // var plugins path: (check theme plugins before of add new plugins)
-var plugins = [
+const plugins = [
   // modules + 'vue/dist/vue.js'
 
 ];
 
 // define package
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     babel = require('gulp-babel'),
     plumber = require('gulp-plumber'),
     uglify = require('gulp-uglify'),
@@ -31,6 +31,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
+    purify = require('postcss-purifycss'),
     cssnano = require('cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
     browserSync = require('browser-sync').create(),
@@ -117,8 +118,14 @@ gulp.task('styles:dev', () => {
 
 // sass dist remove source maps
 gulp.task('styles:dist', () => {
-    var processors = [
+    const processors = [
         autoprefixer({browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4']}),
+        purify({
+            content: [
+                dist + 'js/**/*.js',
+                distPartials + '**/*.php'
+            ]
+        }),
         cssnano({zindex: false})
     ];
 
@@ -131,9 +138,8 @@ gulp.task('styles:dist', () => {
         .pipe(gulp.dest(dist + 'css/'));
 });
 
-
 // script js
-var scriptsTemp = [
+const scriptsTemp = [
     src + 'temp/plugins.js',
     src + 'temp/main.js'
 ];
@@ -211,7 +217,7 @@ gulp.task('serve', () => {
         port: localPort,
         reloadDebounce: 500
     });
-    
+
     gulp.watch(src + 'scss/**/*.scss', ['lint-css']);
     gulp.watch(src + 'js/**/*.js', ['scripts:temp']);
     gulp.watch(src + 'temp/**/*.js', ['scripts:dev']).on('change', reload);

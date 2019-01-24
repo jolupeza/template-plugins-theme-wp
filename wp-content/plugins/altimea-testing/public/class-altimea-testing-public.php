@@ -120,13 +120,13 @@ class AltimeaTestingPublic
         }
 
     }
-    
+
     public function filterContent($content)
     {
         if (is_single() && in_the_loop() && is_main_query()) {
-            return $content . "Probando ando";
+            return $content . "<div class=\"alert alert-success\">Probando ando</div>";
         }
- 
+
         return $content;
     }
 }

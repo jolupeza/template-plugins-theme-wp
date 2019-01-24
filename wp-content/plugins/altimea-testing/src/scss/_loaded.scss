@@ -1,12 +1,13 @@
 // ==== STYLES ==== //
 
 // load bourbon sass helpers
-@import "node_modules/bourbon/core/_bourbon";
+@import "./../../node_modules/bourbon/core/_bourbon";
 
 // Load framework Bootstrap v4.1.1 (Just breakpoints)
-@import "node_modules/bootstrap/scss/_functions";
-@import "node_modules/bootstrap/scss/_variables";
-@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+@import "./../../node_modules/bootstrap/scss/bootstrap";
+//@import "node_modules/bootstrap/scss/_functions";
+//@import "node_modules/bootstrap/scss/_variables";
+//@import "node_modules/bootstrap/scss/mixins/_breakpoints";
 
 // Configuration variables and settings
 @import "variables";

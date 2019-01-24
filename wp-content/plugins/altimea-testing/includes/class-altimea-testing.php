@@ -158,7 +158,7 @@ class AltimeaTesting
     private function define_public_hooks()
     {
         $plugin_public = new AltimeaTestingPublic( $this->get_altimea_testing(), $this->get_version() );
-        $cssLoader = new CssLoader($this->get_version(), $this->deserializer, $this->get_altimea_testing());
+        $cssLoader = new CssLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
 
         $this->loader->add_action('wp_enqueue_scripts', $cssLoader, 'enqueue');
 
