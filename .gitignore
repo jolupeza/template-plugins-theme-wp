@@ -11,6 +11,15 @@ wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 wp-content/themes/twentyseventeen/
 wp-content/themes/testing/node_modules/
+wp-content/languages/loco/
+wp-content/languages/plugins/
+wp-content/languages/themes/
+wp-content/plugins/easy-instagram-feed/
+wp-content/plugins/everest-forms/
+wp-content/plugins/loco-translate/
+wp-content/plugins/spicebox/
+wp-content/themes/content/
+wp-content/themes/spicepress/
 
 /license.txt
 /licencia.txt

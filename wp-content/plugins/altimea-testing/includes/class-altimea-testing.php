@@ -143,10 +143,13 @@ class AltimeaTesting
      */
     private function define_admin_hooks()
     {
-        $plugin_admin = new AltimeaTestingAdmin( $this->get_altimea_testing(), $this->get_version() );
+        $pluginAdmin = new AltimeaTestingAdmin( $this->get_altimea_testing(), $this->get_version(), $this->loader);
 
-        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        //$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+        //$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+        $pluginAdmin->loadHooksActivityLog();
+        $pluginAdmin->loadHooksActivityLogAdminPage();
     }
 
     /**
@@ -158,7 +161,7 @@ class AltimeaTesting
      */
     private function define_public_hooks()
     {
-        $plugin_public = new AltimeaTestingPublic( $this->get_altimea_testing(), $this->get_version() );
+        $pluginPublic = new AltimeaTestingPublic( $this->get_altimea_testing(), $this->get_version() );
 
         $cssLoader = new PublicCssLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
         $this->loader->add_action('wp_enqueue_scripts', $cssLoader, 'enqueue');
@@ -166,7 +169,7 @@ class AltimeaTesting
         $jsLoader = new PublicScriptLoader($this->get_altimea_testing(), $this->get_version(), $this->deserializer);
         $this->loader->add_action('wp_enqueue_scripts', $jsLoader, 'enqueue');
         
-        $this->loader->add_filter('the_content', $plugin_public, 'filterContent');
+        $this->loader->add_filter('the_content', $pluginPublic, 'filterContent');
     }
 
     /**

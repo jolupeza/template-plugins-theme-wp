@@ -49,25 +49,25 @@ require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoloader.php' );
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-altimea-testing-activator.php
- * @param Boolean $networkwide status multisite
  * @return Void
  */
-function activate_altimea_testing($networkwide) {
-    AltimeaTestingActivator::activate($networkwide);
+function activate_altimea_testing() {
+    $pluginAdmin = new AltimeaTestingActivator();
+    $pluginAdmin->activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-altimea-testing-deactivator.php
- * @param Boolean $networkwide status multisite
  * @return Void
  */
-function deactivate_altimea_testing($networkwide) {
-    AltimeaTestingDeactivator::deactivate($networkwide);
+function deactivate_altimea_testing() {
+    AltimeaTestingDeactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_altimea_testing' );
-register_deactivation_hook( __FILE__, 'deactivate_altimea_testing' );
+register_activation_hook( __FILE__, __NAMESPACE__  . '\activate_altimea_testing' );
+
+register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_altimea_testing' );
 
 /**
  * Begins execution of the plugin.

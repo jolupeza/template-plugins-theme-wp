@@ -2,6 +2,9 @@
 
 namespace AltimeaTesting\Includes;
 
+use AltimeaTesting\Admin\AltimeaTestingAdmin;
+use AltimeaTesting\Admin\Modules\ActivityLog;
+
 /**
  * Fired during plugin activation
  *
@@ -25,6 +28,35 @@ namespace AltimeaTesting\Includes;
 class AltimeaTestingActivator
 {
     /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $altimeaTesting    The ID of this plugin.
+     */
+    private $altimeaTesting;
+
+    /**
+     * The current version of the plugin.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      string    $version    The current version of the plugin.
+     */
+    protected $version;
+
+    /**
+     * @var \AltimeaTesting\Admin\Modules\ActivityLog
+     */
+    private $activityLog;
+
+    public function __construct()
+    {
+        $this->altimeaTesting = 'altimea-testing';
+        $this->version = '1.0.0';
+    }
+
+    /**
      * Short Description. (use period)
      *
      * Long Description.
@@ -32,8 +64,17 @@ class AltimeaTestingActivator
      * @since    1.0.0
      * @return Void
      */
-    public static function activate($networkwide)
+    public function activate()
     {
+        $this->getActivityLog()->createTables();
+    }
 
+    private function getActivityLog()
+    {
+        if ($this->activityLog) {
+            return $this->activityLog;
+        }
+
+        return $this->activityLog = new ActivityLog($this->altimeaTesting, $this->version);
     }
 }
