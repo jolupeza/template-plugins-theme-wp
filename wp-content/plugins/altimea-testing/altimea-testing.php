@@ -46,6 +46,8 @@ if ( ! defined( 'ALTIMEA_TESTING_FILE' ) ) {
 
 require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoloader.php' );
 
+require __DIR__ . '/vendor/autoload.php';
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-altimea-testing-activator.php

@@ -91,12 +91,14 @@ class AltimeaTestingAdmin
     public function loadHooksActivityLogAdminPage()
     {
         $submenu = new AltimeaTestingSubmenu($this->version, (new AltimeaTestingSubmenuPage($this->deserializer)));
-        $downloadLog = new AltimeaTestingDownload((new ActivityLog($this->altimeaTesting, $this->version)));
-        $uploadLog = new AltimeTestingLogImport();
+        $activityLog = new ActivityLog($this->altimeaTesting, $this->version);
+        $downloadLog = new AltimeaTestingDownload($activityLog);
+        $uploadLog = new AltimeTestingLogImport($activityLog);
 
         $this->loader->add_action('admin_menu', $submenu, 'addOptionsPage');
         $this->loader->add_action('admin_init', $downloadLog, 'downloadLog');
         $this->loader->add_action('admin_init', $uploadLog, 'uploadLog');
+        $this->loader->add_action('admin_notice', $uploadLog, 'importNotice');
     }
 
     /**

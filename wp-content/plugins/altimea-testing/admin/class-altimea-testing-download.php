@@ -81,7 +81,7 @@ class AltimeaTestingDownload
         /* Print comments */
         echo "<!-- This is a export of the wptuts log table -->\n";
         echo "<!-- (Demonstration purposes only) -->\n";
-        echo "<!--  (Optional) Included import steps here... -->\n";
+        echo "<!-- (Optional) Included import steps here... -->\n";
 
         echo '<logs>';
         foreach ( $logs as $log ) { ?>
@@ -95,6 +95,9 @@ class AltimeaTestingDownload
             </item>
         <?php }
         echo '</logs>';
+
+        /* Finished - now exit */
+        exit();
     }
 
     /**

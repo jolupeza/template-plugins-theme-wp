@@ -127,7 +127,7 @@ class ActivityLog
      * 'since' - timestamp. Return only activities after this date. Default false, no restriction.
      * 'until' - timestamp. Return only activities up to this date. Default false, no restriction.
      *
-     *@param $query Query array
+     *@param $query array
      *@return array Array of matching logs. False on error.
      */
     public function getLogs($query = [])
@@ -136,7 +136,7 @@ class ActivityLog
 
         // Parse defaults
         $defaults = array(
-            'fields'=> array(), 'orderby'=> 'datetime', 'order'=> 'desc', 'user_id'=> false,
+            'fields'=> array(), 'orderby'=> 'datetime', 'order'=> 'desc', 'log_id' => false, 'user_id'=> false,
             'since'=> false, 'until'=> false, 'number'=> 10, 'offset'=> 0
         );
 
@@ -254,7 +254,7 @@ class ActivityLog
         $logs = $wpdb->get_results($sql);
 
         /* Add to cache and filter */
-        wp_cache_add($cacheKey, $logs, 24*60*60);
+        wp_cache_add($cacheKey, $logs, '', 24*60*60);
         $logs = apply_filters('altimea_get_logs', $logs, $query);
         return $logs;
     }

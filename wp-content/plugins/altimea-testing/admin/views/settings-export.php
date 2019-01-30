@@ -21,4 +21,14 @@
         ?>
     </form>
 
+    <form method="post" action="" enctype="multipart/form-data">
+        <p>
+            <label for="altimea_import_logs"><?php _e( 'Import an .xml file.', 'altimeatesting' ); ?></label>
+            <input type="file" id="altimea_import_logs" name="altimea_import" />
+        </p>
+        <input type="hidden" name="action" value="import-logs" />
+        <?php wp_nonce_field( 'altimea-testing-import-logs', '_wplnonce' ); ?>
+        <?php submit_button( __( 'Upload Activity Logs', 'altimeatesting' ), 'primary' ); ?>
+    </form>
+
 </div><!-- .wrap -->

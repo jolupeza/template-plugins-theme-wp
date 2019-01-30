@@ -5,6 +5,7 @@
 *.bak
 *.log
 *.swp
+/vendor/
 
 ## Windows
 Desktop.ini
