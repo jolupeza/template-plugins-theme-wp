@@ -144,7 +144,7 @@ class AltimeTestingLogImport
     public function importNotice()
     {
         // Was an import attempted and are we on the correct admin page?
-        if (!isset($_GET['imported']) || 'tools_page_altimea_import' !== get_current_screen()->id) {
+        if (!isset($_GET['imported']) || 'tools_page_altimea-testing-export' !== get_current_screen()->id) {
             return;
         }
 

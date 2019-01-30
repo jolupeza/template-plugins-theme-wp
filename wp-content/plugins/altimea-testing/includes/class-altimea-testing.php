@@ -150,6 +150,8 @@ class AltimeaTesting
 
         $pluginAdmin->loadHooksActivityLog();
         $pluginAdmin->loadHooksActivityLogAdminPage();
+
+        $this->loader->add_filter('contextual_help', $pluginAdmin, 'screenHelp', 10, 3);
     }
 
     /**
