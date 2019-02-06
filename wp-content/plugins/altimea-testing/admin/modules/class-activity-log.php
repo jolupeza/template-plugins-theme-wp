@@ -161,19 +161,25 @@ class ActivityLog
             $fields = array_map('strtolower',$fields);
 
             //Sanitize by white listing
-            $fields = array_intersect($fields, $allowed_fields);
+            $fields = array_intersect_key($allowed_fields, $fields);
         } else {
             $fields = strtolower($fields);
         }
 
         //Return only selected fields. Empty is interpreted as all
+        // $wpdb->activity_log
+        $table = $wpdb->prefix . 'users';
+
         if (empty($fields)) {
-            $selectSql = "SELECT* FROM {$wpdb->activity_log}";
+            $selectSql = "SELECT * FROM {$table}";
         } elseif ('count' == $fields) {
-            $selectSql = "SELECT COUNT(*) FROM {$wpdb->activity_log}";
+            $selectSql = "SELECT COUNT(*) FROM {$table}";
         } else {
-            $selectSql = "SELECT ".implode(',',$fields)." FROM {$wpdb->activity_log}";
+            $selectSql = "SELECT ".implode(',',$fields)." FROM {$table}";
+            //$selectSql = $wpdb->prepare($selectSql, );
         }
+
+        dd($selectSql);
 
         /*SQL Join */
         //We don't need this, but we'll allow it be filtered (see 'wptuts_logs_clauses' )
@@ -222,7 +228,8 @@ class ActivityLog
                 $orderSql = "ORDER BY user_id $order";
                 break;
             case 'datetime':
-                $orderSql = "ORDER BY activity_date $order";
+                //$orderSql = "ORDER BY activity_date $order";
+                $orderSql = "ORDER BY user_registered $order";
             default:
                 break;
         }
@@ -252,6 +259,8 @@ class ActivityLog
 
         /* Perform query */
         $logs = $wpdb->get_results($sql);
+
+        dd($logs);
 
         /* Add to cache and filter */
         wp_cache_add($cacheKey, $logs, '', 24*60*60);
@@ -320,6 +329,8 @@ class ActivityLog
             'object_id' => '%d',
             'object_type' => '%s',
             'activity_date' => '%s',
+            'user_login' => '%s',
+            'display_name' => '%s',
         ];
     }
 }

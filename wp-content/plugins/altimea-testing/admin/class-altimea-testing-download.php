@@ -52,13 +52,14 @@ class AltimeaTestingDownload
         check_admin_referer('altimea-testing-export-logs-save', '_wplnonce');
 
         // Trigger download
-        $this->exportLogs();
+        $this->exportLogs(['fields' => ['user_login' => true, 'display_name' => true]]);
     }
 
     private function exportLogs($args = [])
     {
         // Query logs
         $logs = $this->activityLog->getLogs($args);
+        dd($logs);
 
         // If there are not logs - abort
         if (!$logs) {
