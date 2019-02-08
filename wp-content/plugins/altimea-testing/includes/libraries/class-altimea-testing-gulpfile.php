@@ -38,7 +38,7 @@ class AltimeaTestingGulpfile {
 
 	public static function getFileNameMD5($fileName) {
 		$dataJson = self::getDataJson();
-		$file_md5 = !empty($dataJson['md5']) ? $dataJson['md5'] : '';
+		$file_md5 = !empty($dataJson['md5']) && WP_ENV !== 'dev' ? $dataJson['md5'] : '';
 		$newFileName = false;
 
 		$strExtension = substr($fileName, strrpos($fileName, '.') + 0);

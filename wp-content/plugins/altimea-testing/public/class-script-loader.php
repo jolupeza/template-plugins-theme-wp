@@ -86,6 +86,29 @@ class ScriptLoader implements AssetsInterface
 
         wp_enqueue_script('altimea-testing-vue', plugin_dir_url(ALTIMEA_TESTING_FILE) . 'public/assets/js/app.js', array(), $this->version, true);
 
+        if (is_page_template('templates/vue-search-app-template.php')) {
+            wp_register_script('vue_search_app', 'http://localhost:8080/app.js', array(), $this->version, true);
+
+            global $post;
+            wp_localize_script(
+                'vue_search_app',
+                'wpData',
+                array(
+                    'plugin_directory_uri' => plugin_dir_url(ALTIMEA_TESTING_FILE),
+                    'rest_url' => untrailingslashit(esc_url_raw(rest_url())),
+                    'app_path' => $post->post_name,
+                    'post_categories' => get_terms(array(
+                        'taxonomy' => 'category',
+                        'hide_empty' => true,
+                        'fields' => 'names',
+                    ))
+                )
+            );
+
+            wp_enqueue_script('vue_search_app');
+
+        }
+
         $fileName = 'altimea-testing-main.js';
         $newFileName = AltimeaTestingGulpfile::getFileNameMD5( $fileName );
 
