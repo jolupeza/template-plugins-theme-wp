@@ -83,9 +83,6 @@ class ScriptLoader implements AssetsInterface
          * between the defined hooks and the functions defined in this
          * class.
          */
-
-        wp_enqueue_script('altimea-testing-vue', plugin_dir_url(ALTIMEA_TESTING_FILE) . 'public/assets/js/app.js', array(), $this->version, true);
-
         if (is_page_template('templates/vue-search-app-template.php')) {
             wp_register_script('vue_search_app', 'http://localhost:8080/app.js', array(), $this->version, true);
 

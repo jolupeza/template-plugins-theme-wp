@@ -1,6 +1,6 @@
 module.exports = {
   presets: [
-    ["env", { "modules": false }],
+    "@babel/preset-env",
     '@vue/app'
   ]
 };

@@ -574,7 +574,7 @@ var resolvers_cache_middleware_createResolversCacheMiddleware = function createR
 
 /* harmony default export */ var resolvers_cache_middleware = (resolvers_cache_middleware_createResolversCacheMiddleware);
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/namespace-store.js
+// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/namespace-index.js
 
 
 

@@ -1,26 +1,24 @@
 <template>
-  <div id="app">
-    <app-display-post />
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
+  <div id="wp-vue-app">
+    <app-navigation></app-navigation>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  import AppDisplayPost from './views/AppDisplayComponent';
+import AppNavigation from './components/AppNavigation'
 
-  export default {
-    components: {
-      AppDisplayPost
-    }
+export default {
+  components: {
+    AppNavigation
   }
+}
 </script>
 
 <style lang="scss">
-#app {
+@import "./../node_modules/animate.css/animate";
+
+#wp-vue-app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

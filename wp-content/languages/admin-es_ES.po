@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.0.x - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-01-23 11:46:59+0000\n"
+"PO-Revision-Date: 2019-02-05 23:00:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9874,7 +9874,7 @@ msgstr "Mi sitio"
 #: wp-admin/includes/schema.php:387
 msgctxt "default GMT offset or timezone string"
 msgid "0"
-msgstr "0"
+msgstr "Europe/Madrid"
 
 #: wp-admin/includes/update-core.php:1303 wp-admin/update-core.php:512
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
