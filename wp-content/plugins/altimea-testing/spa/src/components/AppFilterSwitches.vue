@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+  .toggle-container {
+    line-height: 1.3;
+  }
   .toggle-switch {
     position: relative;
     display: inline-block;
@@ -65,7 +68,7 @@ export default {
   }
   .toggle-switch .label {
     display: inline-block;
-    margin: 0 20px 0 30px;
+    margin: 0 20px 0 45px;
     font-weight: 400;
   }
   .toggle-switch .filter-toggle:before {

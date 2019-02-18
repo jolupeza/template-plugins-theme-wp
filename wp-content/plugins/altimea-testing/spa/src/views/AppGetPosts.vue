@@ -87,15 +87,27 @@ export default {
     this.fetchData()
   },
   methods: {
-    fetchData () {
-      if (this.fetchNow > 0) {
-        this.apiResponse = ' Loading ⏳'
+    async fetchData () {
+      try {
+        if (this.fetchNow > 0) {
+          this.apiResponse = ' Loading ⏳'
+          this.$store.dispatch('clearMessage', {}, { root: true })
 
-        this.$store.dispatch('posts/getPosts', this.route).then(() => {
+          await this.$store.dispatch('posts/getPosts', this.route)
           setTimeout(() => {
             this.isDataAvailable = true
+            this.apiResponse = ''
           }, 2000)
-        })
+        }
+      } catch (error) {
+        this.isDataAvailable = false
+        this.apiResponse = ''
+
+        this.$store.dispatch(
+          'setMessage',
+          { type: 'danger', text: error.response.data.message, display: true, fixed: true },
+          { root: true }
+        )
       }
     }
   }

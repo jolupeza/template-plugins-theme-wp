@@ -9,28 +9,39 @@ export default new Vuex.Store({
     message: {
       type: null,
       text: '',
-      display: true
+      display: false,
+      fixed: false
     }
   },
   modules: {
     posts
   },
   mutations: {
-    setMessage (state, { type, text, display }) {
+    setMessage (state, { type, text, display, fixed }) {
       state.message.type = type
       state.message.text = text
       state.message.display = display
+      state.message.fixed = fixed
 
-      setTimeout(() => {
-        state.message.type = null
-        state.message.text = ''
-        state.message.display = false
-      }, 3000)
+      if (!fixed) {
+        setTimeout(() => {
+          this.commit('clearMessage')
+        }, 3000)
+      }
+    },
+    clearMessage (state) {
+      state.message.type = null
+      state.message.text = ''
+      state.message.display = false
+      state.message.fixed = false
     }
   },
   actions: {
-    setMessage (context, { type, text, display }) {
-      context.commit('setMessage', { type, text, display })
+    setMessage (context, { type, text, display, fixed }) {
+      context.commit('setMessage', { type, text, display, fixed })
+    },
+    clearMessage (context) {
+      context.commit('clearMessage')
     }
   }
 })
