@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { mapState } from 'vuex'
 import AppDisplayPost from './AppDisplayPost'
 
@@ -97,44 +96,6 @@ export default {
             this.isDataAvailable = true
           }, 2000)
         })
-      }
-    },
-    async getPosts (route = 'posts', namespace = 'wp/v2') {
-      try {
-        const postsPerPage = 100
-        const restURL = this.wpData.rest_url
-        const fields = 'id,title,link,vue_meta'
-
-        const response = await axios(
-          `${restURL}/${namespace}/${route}?per_page=${postsPerPage}&page=1&_fields=${fields}`
-        )
-
-        this.wpPosts = response.data
-        this.isDataAvailable = true
-
-        /*
-        * calculate total number of required API requests using the header fields from the response.
-        *
-        * headers['x-wp-total']: Total WordPress Posts
-        * headers['x-wp-totalpages'] Total number of pages based on the per_page param.
-        */
-        const wpTotalPages = Math.ceil(
-          response.headers['x-wp-total'] / postsPerPage
-        )
-
-        const promises = []
-        for (let page = 2; page <= wpTotalPages && page <= 10; page++) {
-          promises.push(
-            axios(`${restURL}/${namespace}/${route}?per_page=${postsPerPage}&page=${page}&_fields=${fields}`)
-          )
-        }
-
-        const wpData = await Promise.all(promises)
-        wpData.map(post => this.wpPosts.push(...post.data))
-      } catch (error) {
-        this.apiResponse = ` The request could not be processed! <br> <strong>${error.response.data.message}</strong> `
-        this.isDataAvailable = false
-        this.$store.dispatch('setMessage', { type: 'danger', text: error.response.data.message, display: true })
       }
     }
   }

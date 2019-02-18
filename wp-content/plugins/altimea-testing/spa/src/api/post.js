@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default {
   wpPosts: [],
+  error: [],
   wpData: window.wpData,
   restURL: window.wpData.rest_url,
   postsPerPage: 100,
@@ -31,7 +32,8 @@ export default {
 
       return this.wpPosts
     } catch (error) {
-      return error.response.data
+      this.error = error
+      return this.error
     }
   }
 }

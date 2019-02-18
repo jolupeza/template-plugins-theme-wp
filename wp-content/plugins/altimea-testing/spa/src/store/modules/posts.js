@@ -7,12 +7,20 @@ const state = {
 const getters = {}
 
 const actions = {
-  getPosts ({ dispatch, commit }, route) {
-    postApi.getPosts(route).then(posts => {
-      commit('setPosts', posts)
-    }).catch((error) => {
-      console.log(error)
-    })
+  async getPosts ({ dispatch, commit }, route) {
+    const posts = await postApi.getPosts(route)
+    if (posts instanceof Error) {
+      dispatch(
+        'setMessage',
+        { type: 'danger', text: posts.response.data.message, display: true },
+        { root: true }
+      )
+
+      commit('setPosts', [])
+      return
+    }
+
+    commit('setPosts', posts)
   }
 }
 
