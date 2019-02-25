@@ -2,6 +2,7 @@
 
 namespace AltimeaTesting\Front;
 
+use AltimeaTesting\Shared\Spafile;
 use AltimeaTesting\Util\AssetsInterface;
 use AltimeaTesting\Shared\AltimeaTestingDeserializer;
 use AltimeaTesting\Includes\Libraries\AltimeaTestingGulpfile;
@@ -51,6 +52,8 @@ class ScriptLoader implements AssetsInterface
      */
     private $altimeaTesting;
 
+    private $spaFile;
+
     /**
      * Initializes this class and stores the current version of this plugin.
      *
@@ -63,6 +66,7 @@ class ScriptLoader implements AssetsInterface
         $this->version = $version;
         $this->deserializer = $deserializer;
         $this->altimeaTesting = $altimeaTesting;
+        $this->spaFile = Spafile::getInstance();
     }
 
     /**
@@ -82,28 +86,15 @@ class ScriptLoader implements AssetsInterface
          * The AltimeaTestingLoader will then create the relationship
          * between the defined hooks and the functions defined in this
          * class.
+         * 'http://localhost:8080/app.js'
          */
         if (is_page_template('templates/vue-search-app-template.php')) {
-            wp_register_script('vue_search_app', 'http://localhost:8080/app.js', array(), $this->version, true);
+            $filesJs = $this->spaFile->getFilesSpa('js');
+            if (!empty($filesJs)) {
+                $this->registerChunk($filesJs);
 
-            global $post;
-            wp_localize_script(
-                'vue_search_app',
-                'wpData',
-                array(
-                    'plugin_directory_uri' => plugin_dir_url(ALTIMEA_TESTING_FILE),
-                    'rest_url' => untrailingslashit(esc_url_raw(rest_url())),
-                    'app_path' => $post->post_name,
-                    'post_categories' => get_terms(array(
-                        'taxonomy' => 'category',
-                        'hide_empty' => true,
-                        'fields' => 'names',
-                    ))
-                )
-            );
-
-            wp_enqueue_script('vue_search_app');
-
+                $this->registerApp($filesJs);
+            }
         }
 
         $fileName = 'altimea-testing-main.js';
@@ -128,4 +119,51 @@ class ScriptLoader implements AssetsInterface
         );
     }
 
+    private function registerChunk($files)
+    {
+        foreach ($files as $file) {
+            if (strpos($file, 'chunk-') === 0) {
+                wp_enqueue_script(
+                    'vue_search_chunk',
+                    plugin_dir_url(ALTIMEA_TESTING_FILE) . 'spa/dist/js/' . $file,
+                    array(), $this->version, true);
+            }
+        }
+    }
+
+    private function registerApp($files)
+    {
+        foreach ($files as $file) {
+            if (strpos($file, 'app.') === 0) {
+                wp_register_script(
+                    'vue_search_app',
+                    plugin_dir_url(ALTIMEA_TESTING_FILE) . 'spa/dist/js/' . $file,
+                    array(), $this->version, true);
+
+                wp_localize_script(
+                    'vue_search_app',
+                    'wpData',
+                    $this->getWpData()
+                );
+
+                wp_enqueue_script('vue_search_app');
+            }
+        }
+    }
+
+    private function getWpData()
+    {
+        global $post;
+
+        return array(
+            'plugin_directory_uri' => plugin_dir_url(ALTIMEA_TESTING_FILE),
+            'rest_url' => untrailingslashit(esc_url_raw(rest_url())),
+            'app_path' => $post->post_name,
+            'post_categories' => get_terms(array(
+                'taxonomy' => 'category',
+                'hide_empty' => true,
+                'fields' => 'names',
+            ))
+        );
+    }
 }

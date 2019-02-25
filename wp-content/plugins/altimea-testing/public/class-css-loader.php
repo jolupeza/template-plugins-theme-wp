@@ -2,6 +2,7 @@
 
 namespace AltimeaTesting\Front;
 
+use AltimeaTesting\Shared\Spafile;
 use AltimeaTesting\Util\AssetsInterface;
 use AltimeaTesting\Shared\AltimeaTestingDeserializer;
 use AltimeaTesting\Includes\Libraries\AltimeaTestingGulpfile;
@@ -51,6 +52,8 @@ class CssLoader implements AssetsInterface
      */
     private $altimeaTesting;
 
+    private $spaFile;
+
     /**
      * Initializes this class and stores the current version of this plugin.
      *
@@ -63,6 +66,7 @@ class CssLoader implements AssetsInterface
         $this->version = $version;
         $this->deserializer = $deserializer;
         $this->altimeaTesting = $altimeaTesting;
+        $this->spaFile = Spafile::getInstance();
     }
 
     /**
@@ -104,6 +108,16 @@ class CssLoader implements AssetsInterface
                 'all'
             );
         }
+
+        $filesCss = $this->spaFile->getFilesSpa('css');
+
+        wp_enqueue_style(
+            'vue_search_app',
+            plugin_dir_url( ALTIMEA_TESTING_FILE ) . 'spa/dist/css/' . $filesCss[0],
+            array(),
+            $this->version,
+            'all'
+        );
     }
 
     /**
