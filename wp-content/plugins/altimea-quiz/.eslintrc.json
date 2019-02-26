@@ -1,0 +1,12 @@
+{
+	"extends": "wordpress",
+	"rules": {
+		"yoda": [
+			"error",
+			"never"
+		]
+	},
+	"parserOptions": {
+        "ecmaVersion": 6
+    }
+}

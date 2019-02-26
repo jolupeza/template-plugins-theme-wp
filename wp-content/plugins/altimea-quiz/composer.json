@@ -1,0 +1,22 @@
+{
+    "name": "altimea/altimea-quiz",
+    "description": "Create dynamic multiple choice quizes for Wordpress",
+    "type": "plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Perez",
+            "email": "jose.perez@altimea.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "symfony/var-dumper": "^4.2",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Tests\\": "tests/"
+      }
+    }
+}

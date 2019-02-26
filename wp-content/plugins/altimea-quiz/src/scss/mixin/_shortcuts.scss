@@ -1,0 +1,120 @@
+@mixin flexvalue($flex-direction,$justify-content,$align-items){
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content:$justify-content;
+    align-items:$align-items;
+}
+@mixin each($num) {
+    &:nth-child(#{$num}n) {
+        @content;
+    }
+}
+@mixin n-between($num, $first) {
+    &:nth-child(#{$num}n):nth-child(n + #{$first}) {
+        @content;
+    }
+}
+@mixin flex{
+    display: flex;
+}
+@mixin flex-jf-start{
+    display: flex;
+    justify-content: flex-start;
+}
+@mixin flex-jf-center{
+    display: flex;
+    justify-content: center;
+}
+@mixin flex-jf-end{
+    display: flex;
+    justify-content:flex-end;
+}
+@mixin flex-jf-between{
+    display: flex;
+    justify-content: space-between;
+}
+@mixin flex-jf-around{
+    display: flex;
+    justify-content:space-around;
+}
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+@mixin flex-vertical{
+    display: flex;
+    align-items:center;
+}
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.absolute-center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+}
+.ellipsis{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+@mixin grid-result($msize,$wli,$msizetab,$wlitab,$msizedesk,$wlidesk){
+    $msizeneg:($msize)*-1;
+    $msizenegtab:($msizetab)*-1;
+    $msizenegdesk:($msizedesk)*-1;
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:$msizeneg;/*siempre negativo or 0 */
+    margin-right:$msizeneg;/*siempre negativo or 0 */
+    >*{
+        width:$wli;
+        padding-left:$msize;
+        padding-right:$msize;
+        @media(min-width:48em){
+            width: $wlitab;
+            padding-left:$msizetab;
+            padding-right:$msizetab;
+            @at-root{
+                .bmodal-grid{
+                    margin-left:$msizenegtab;
+                    margin-right: $msizenegtab;
+                }
+            }
+        }
+        @media(min-width:75em){
+            width:$wlidesk;
+            padding-left:$msizedesk;
+            padding-right:$msizedesk;
+            @at-root{
+                .bmodal-grid{
+                    margin-left:$msizenegdesk;
+                    margin-right: $msizenegdesk;
+                }
+            }
+        }
+    }
+}
+@mixin bground($size, $position, $repeat){
+    background-size: $size;
+    background-position: $position;
+    background-repeat: $repeat;
+}
+@mixin input($placecolor,$fontsz){
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $placecolor;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+    color: $placecolor;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+    color: $placecolor;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+    color: $placecolor;
+    }
+    font-size:$fontsz;
+}

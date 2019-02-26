@@ -82,7 +82,7 @@ this["wp"] = this["wp"] || {}; this["wp"]["data"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 308);
+/******/ 	return __webpack_require__(__webpack_require__.s = 309);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -444,7 +444,7 @@ function _assertThisInitialized(self) {
 
 /***/ }),
 
-/***/ 308:
+/***/ 309:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -574,7 +574,7 @@ var resolvers_cache_middleware_createResolversCacheMiddleware = function createR
 
 /* harmony default export */ var resolvers_cache_middleware = (resolvers_cache_middleware_createResolversCacheMiddleware);
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/namespace-index.js
+// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/namespace-store.js
 
 
 
@@ -2132,7 +2132,7 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
+	g = g || new Function("return this")();
 } catch (e) {
 	// This works if the window reference is available
 	if (typeof window === "object") g = window;
