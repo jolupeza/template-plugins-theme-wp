@@ -1,9 +1,11 @@
 <?php
 
+namespace CustomMessages;
+
 /**
  * This class looks at the type of file that's being passed into the autoloader.
  *
- * @package AltimeaTesting\Inc
+ * @package Altimea_Custom_Messages\Inc
  */
  
 /**
@@ -12,7 +14,7 @@
  * It will determine if it's a class, an interface, or a namespace and return the fully-qualified
  * path name to the file so that it may be included.
  *
- * @package AltimeaTesting\Inc
+ * @package Altimea_Custom_Messages\Inc
  */
 class FileInvestigator
 {
@@ -28,15 +30,16 @@ class FileInvestigator
         $fileParts = explode('\\', $filename);
 
         for ($i = 1; $i < count($fileParts); $i++) {
-            $current = $fileParts[$i];
-
+            $current = strtolower($fileParts[$i]);
+            $current = str_ireplace('_', '-', $current);
+            
             $filePath .= $this->getFileName($fileParts, $current, $i);
             
             if (count($fileParts) - 1 !== $i) {
                 $filePath = trailingslashit($filePath);
             }
         }
-
+        
         return $filePath;
     }
     
@@ -89,8 +92,8 @@ class FileInvestigator
      */
     private function getInterfaceName($fileParts)
     {
-        $interfaceName = preg_replace("@([A-Z])@", "-$1", $fileParts[count($fileParts) - 1]);
-        $interfaceName = explode('-', strtolower(trim($interfaceName, '-')))[0];
+        $interfaceName = explode('_', $fileParts[count($fileParts - 1)]);
+        $interfaceName = $interfaceName[0];
         
         return "interface-$interfaceName.php";
     }
@@ -104,9 +107,6 @@ class FileInvestigator
      */
     private function getClassName($current)
     {
-        $current = preg_replace("@([A-Z])@", "-$1", $current);
-        $current = strtolower(trim($current, '-'));
-
         return "class-$current.php";
     }
     
@@ -119,7 +119,6 @@ class FileInvestigator
      */
     private function getNamespaceName($current)
     {
-        $current = $current === 'Front' ? 'Public' : $current;
-        return '/' . strtolower($current);
+        return '/' . $current;
     }
 }

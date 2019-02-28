@@ -1,19 +1,16 @@
 {
-    "name": "watson/autoclass-manager",
-    "description": "Plugins Wp para administrar el contenido de la web de Autoclass",
+    "name": "altimea/altimea-custom-messages",
+    "description": "he Altimea Custom Messages is a plugin it allows display custom messages",
     "license": "MIT",
     "authors": [
         {
             "name": "Jose Perez",
-            "email": "joseluis@watson.pe"
+            "email": "jose.perez@altimea.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Altimea_Custom_Messages\\": "src/"
+            "CustomMessages\\": "inc/"
         }
-    },
-    "require": {
-        "endroid/simple-excel": "^2.1"
     }
 }

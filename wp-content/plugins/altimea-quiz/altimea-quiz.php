@@ -40,7 +40,7 @@ if ( ! defined( 'ALTIMEA_QUIZ_FILE' ) ) {
 	define( 'ALTIMEA_QUIZ_FILE', __FILE__ );
 }
 
-require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoloader.php' );
+require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoload.php' );
 
 require __DIR__ . '/vendor/autoload.php';
 

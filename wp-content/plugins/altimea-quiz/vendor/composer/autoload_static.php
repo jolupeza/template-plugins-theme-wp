@@ -23,12 +23,20 @@ class ComposerStaticInitb01b6d81397526389af2af35640f8692
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Tests\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
+        ),
+        'Q' => 
+        array (
+            'Quiz\\' => 5,
         ),
         'D' => 
         array (
@@ -48,6 +56,10 @@ class ComposerStaticInitb01b6d81397526389af2af35640f8692
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
+        ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
@@ -63,6 +75,10 @@ class ComposerStaticInitb01b6d81397526389af2af35640f8692
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
+        'Quiz\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

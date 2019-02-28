@@ -1,5 +1,7 @@
 <?php
 
+namespace Testing;
+
 /**
  * Dynamically loads the class attempting to be instantiated elsewhere in the
  * plugin.
@@ -13,7 +15,7 @@
  *
  * @package AltimeaTesting\Inc
  */
-class AutoloaderQuiz
+class Autoloader
 {
     /**
      * Verifies the file being passed into the autoloader is of the same namespace as the
@@ -36,8 +38,8 @@ class AutoloaderQuiz
      */
     public function __construct()
     {
-        $this->namespaceValidator = new NamespaceValidatorQuiz();
-        $this->fileRegistry = new FileRegistryQuiz();
+        $this->namespaceValidator = new NamespaceValidator();
+        $this->fileRegistry = new FileRegistry();
     }
     
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Quiz;
+
 /**
  * Includes the file from the plugin.
  *
@@ -12,7 +14,7 @@
  *
  * @package AltimeaTesting\Inc
  */
-class FileRegistryQuiz
+class FileRegistry
 {
     /**
      * This class looks at the type of file that's being passed into the autoloader.
@@ -26,7 +28,7 @@ class FileRegistryQuiz
      */
     public function __construct()
     {
-        $this->investigator = new FileInvestigatorQuiz();
+        $this->investigator = new FileInvestigator();
     }
     
     /**

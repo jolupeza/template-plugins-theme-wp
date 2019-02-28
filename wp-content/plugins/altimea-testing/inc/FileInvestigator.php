@@ -1,5 +1,7 @@
 <?php
 
+namespace Testing;
+
 /**
  * This class looks at the type of file that's being passed into the autoloader.
  *
@@ -14,7 +16,7 @@
  *
  * @package AltimeaTesting\Inc
  */
-class FileInvestigatorQuiz
+class FileInvestigator
 {
     /**
      * Returns the fully-qualified path to the file based on the incoming filename.

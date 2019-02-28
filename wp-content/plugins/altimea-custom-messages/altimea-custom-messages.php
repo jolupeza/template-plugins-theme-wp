@@ -28,7 +28,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoloader.php' );
+require_once( trailingslashit(dirname(__FILE__)) . 'inc/autoload.php' );
 
 /**
  * Instantiates the Autoclass Manager class and then

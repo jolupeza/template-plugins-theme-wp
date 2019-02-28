@@ -1,14 +1,17 @@
 <?php
+
+namespace Testing;
+
 /**
  * Looks at the incoming class or interface determines if it's valid.
  *
- * @package Altimea_Custom_Messages\Inc
+ * @package AltimeaTesting\Inc
  */
 
 /**
  * Looks at the incoming class or interface determines if it's valid.
  *
- * @package Altimea_Custom_Messages\Inc
+ * @package AltimeaTesting\Inc
  */
 class NamespaceValidator
 {
@@ -20,6 +23,6 @@ class NamespaceValidator
      */
     public function isValid($filename)
     {
-        return (0 === strpos($filename, 'Altimea_Custom_Messages'));
+        return (0 === strpos($filename, 'AltimeaTesting'));
     }
 }

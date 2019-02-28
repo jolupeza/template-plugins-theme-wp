@@ -1,16 +1,18 @@
 <?php
 
+namespace CustomMessages;
+
 /**
  * Includes the file from the plugin.
  *
- * @package AltimeaTesting\Inc
+ * @package Altimea_Custom_Messages\Inc
  */
 
 /**
  * This will use the fully qualified file path ultimately returned from the other classes
  * and will include it in the plugin.
  *
- * @package AltimeaTesting\Inc
+ * @package Altimea_Custom_Messages\Inc
  */
 class FileRegistry 
 {

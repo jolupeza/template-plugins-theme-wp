@@ -1,5 +1,7 @@
 <?php
 
+namespace Quiz;
+
 /**
  * Looks at the incoming class or interface determines if it's valid.
  *
@@ -21,6 +23,6 @@ class NamespaceValidator
      */
     public function isValid($filename)
     {
-        return (0 === strpos($filename, 'AltimeaTesting'));
+        return (0 === strpos($filename, 'AltimeaQuiz'));
     }
 }

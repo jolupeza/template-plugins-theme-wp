@@ -6,6 +6,7 @@ use AltimeaQuiz\Admin\Administration\Submenu;
 use AltimeaQuiz\Admin\Administration\SubmenuPage;
 use AltimeaQuiz\Admin\AdminScriptLoader;
 use AltimeaQuiz\Admin\AltimeaQuizAdmin;
+use AltimeaQuiz\Front\AltimeaQuizPublic;
 use AltimeaQuiz\Shared\Deserializer;
 
 /**
@@ -160,9 +161,11 @@ class AltimeaQuiz
 	 */
 	private function define_public_hooks()
     {
-		/*$plugin_public = new AltimeaQuizPublic( $this->get_altimea_quiz(), $this->get_version() );
+		$pluginPublic = new AltimeaQuizPublic($this->get_altimea_quiz(), $this->get_version(), $this->get_loader());
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$pluginPublic->loadShortcode();
+
+		/*$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );*/
 	}
 
